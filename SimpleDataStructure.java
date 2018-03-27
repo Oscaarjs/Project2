@@ -70,17 +70,25 @@ public class SimpleDataStructure {
 	}
 
 	public void addSort(String namn) {
-		int index = friends.length-1;
+		int index = friends.length - 1;
 		for (int i = 0; i < friends.length - 1; i++) {
 			if (friends[i + 1] != null && friends[i] != null) {
 				if (namn.compareTo(friends[i]) >= 0) {
 					if (namn.compareTo(friends[i + 1]) <= 0) {
 						index = i + 1;
+						break;
 					}
 
+				} else {
+					index = 0;
+					break;
 				}
 
+			} else if (friends[i] == null) {
+				index = i;
+				break;
 			}
+
 		}
 		for (int i = friends.length - 1; i > index; i--) {
 			friends[i] = friends[i - 1];
@@ -93,16 +101,18 @@ public class SimpleDataStructure {
 	public static void main(String[] arg) {
 		SimpleDataStructure myfriends = new SimpleDataStructure();
 		String[] names = { "Kalle", "Oscar", "Janne", "Joel", "Lina", "Jan", "Douglas", "Axel", "Christopher", "Lovisa",
-				"Patricia", "Petra" };
+				"Patricia", "Petra", "Gustav", "Mattias" };
 		Arrays.sort(names);
 		for (int i = 0; i < names.length; i++) {
 			myfriends.add(names[i]);
 		}
+		myfriends.printFriends();
 		myfriends.remove("Douglas");
-		myfriends.addSort("Lucas");
-		myfriends.addSort("Zlbin");
-		myfriends.addSort("Xlbin");
-		
+		myfriends.addSort("Nikolina");
+		myfriends.addSort("Queen");
+		myfriends.addSort("Ander");
+		myfriends.addSort("Janna");
+
 		myfriends.printFriends();
 		System.out.println(myfriends.get(5));
 
